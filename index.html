@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NPI Provider Lookup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>NPI Provider Lookup</h1>
+
+    <form method="POST">
+        <input type="text" name="npi" placeholder="Enter NPI Number" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if provider %}
+
+    <div class="card">
+
+        <h2>Provider Details</h2>
+
+        {% if provider.basic.first_name %}
+            <p>
+                <strong>Name:</strong>
+                {{ provider.basic.first_name }}
+                {{ provider.basic.last_name }}
+            </p>
+        {% else %}
+            <p>
+                <strong>Organization:</strong>
+                {{ provider.basic.organization_name }}
+            </p>
+        {% endif %}
+
+        <p>
+            <strong>Gender:</strong>
+            {{ provider.basic.gender }}
+        </p>
+
+        <p>
+            <strong>Enumeration Date:</strong>
+            {{ provider.basic.enumeration_date }}
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            {{ provider.basic.status }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
